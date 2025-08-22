@@ -45,19 +45,39 @@
             gap: 16px;
         }
         .link-btn {
-            background: #1976d2;
-            color: #fff;
+            /* neutral button to match calendar embed */
+            background: #fff;
+            color: #2f3b45; /* dark neutral text */
             text-decoration: none;
-            padding: 12px 0;
+            padding: 12px 12px;
             border-radius: 6px;
             font-size: 1em;
-            font-weight: 500;
-            transition: background 0.2s;
+            font-weight: 600;
+            transition: background 0.12s, border-color 0.12s;
             width: 100%;
             box-sizing: border-box;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid #e6e9ec;
         }
         .link-btn:hover {
-            background: #1565c0;
+            background: #f5f7fa;
+            border-color: #d7dbe0;
+        }
+        .btn-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            flex: 0 0 18px;
+            vertical-align: middle;
+        }
+        .link-btn svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            fill: currentColor;
         }
         /* mobile-specific defaults */
         .map-link-mobile {
@@ -104,6 +124,13 @@
             }
             .map-link-mobile {
                 display: block !important;
+            }
+            /* show a calendar link above the map on small screens and hide the embedded iframe */
+            .calendar-link-mobile {
+                display: block !important;
+            }
+            .calendar-container {
+                display: none !important;
             }
         }
         .calendar-container iframe {
@@ -178,11 +205,52 @@
     <h1>City Center<br>Neighborhood Association</h1>
         <h2>West Allis, WI</h2>
         <div class="links">
-            <a class="link-btn" href="https://www.facebook.com/profile.php?id=61568563697712" target="_blank">Facebook Page</a>
-            <a class="link-btn" href="https://linktr.ee/ccna53214" target="_blank">CCNA Linktree</a>
-            <a class="link-btn" href="http://subscribepage.io/Q5aGyP" target="_blank">Email List Signup</a>
+            <a class="link-btn" href="https://www.facebook.com/profile.php?id=61568563697712" target="_blank" aria-label="Facebook">
+                <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path fill="#1877F2" d="M22 12a10 10 0 1 0-11.5 9.9v-7H8.5v-2.9h2V9.3c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2v1.4h2.2l-.4 2.9h-1.8v7A10 10 0 0 0 22 12"/>
+                    </svg>
+                </span>
+                <span>Facebook Page</span>
+            </a>
+            <a class="link-btn" href="https://linktr.ee/ccna53214" target="_blank" aria-label="Linktree">
+                <span class="btn-icon" aria-hidden="true">
+                    <!-- Linktree round mark: green circle with white glyph -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+                        <circle cx="12" cy="12" r="12" fill="#06D554" />
+                        <!-- white chain-ish glyph centered inside the circle -->
+                        <path d="M8.8 14.2a3 3 0 0 1 0-4.24l1.6-1.6a3 3 0 0 1 4.24 4.24l-1.6 1.6a1 1 0 0 1-1.42-1.42l1.6-1.6a1 1 0 0 0-1.42-1.42L9.98 11.6a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l1.6-1.6a1 1 0 0 1 1.42 1.42l-1.6 1.6a3 3 0 0 1-4.24 0z" fill="#fff" />
+                    </svg>
+                </span>
+                <span>CCNA Linktree</span>
+            </a>
+            <a class="link-btn" href="http://subscribepage.io/Q5aGyP" target="_blank" aria-label="Email signup">
+                <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4l-8 5L4 8V6l8 5 8-5v2z"/>
+                    </svg>
+                </span>
+                <span>Email List Signup</span>
+            </a>
             <!-- Calendar embed is shown below instead of a button -->
-            <a class="link-btn map-link-mobile" href="https://www.google.com/maps/d/u/0/edit?mid=1BZL2Ign6zRzC6uGHAG0oz55STCDH1dc&usp=sharing" target="_blank">Neighborhood Map</a>
+            <a class="link-btn calendar-link-mobile" href="https://calendar.google.com/calendar/u/0?cid=Y2NuYTUzMjE0QGdtYWlsLmNvbQ" target="_blank" aria-label="Neighborhood Calendar" style="display:none;">
+                <span class="btn-icon" aria-hidden="true">
+                    <!-- small calendar icon (inherits currentColor) -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM7 11h5v5H7z" fill="currentColor" />
+                    </svg>
+                </span>
+                <span>Neighborhood Calendar</span>
+            </a>
+            <a class="link-btn map-link-mobile" href="https://www.google.com/maps/d/u/0/edit?mid=1BZL2Ign6zRzC6uGHAG0oz55STCDH1dc&usp=sharing" target="_blank" aria-label="Neighborhood Map">
+                <span class="btn-icon" aria-hidden="true">
+                    <!-- small map pin icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor" />
+                    </svg>
+                </span>
+                <span>Neighborhood Map</span>
+            </a>
 
         </div>
     </div>
