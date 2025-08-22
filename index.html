@@ -106,6 +106,71 @@
                 display: block !important;
             }
         }
+        .calendar-container iframe {
+            width: 100%;
+            height: 360px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        @media (max-width: 480px) {
+            .calendar-container iframe {
+                height: 280px;
+            }
+        }
+        .calendar-add {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            background: transparent;
+            color: #444; /* neutral color */
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .calendar-add:hover {
+            background: rgba(25,117,210,0.06);
+        }
+        .calendar-icon {
+            width: 18px;
+            height: 18px;
+        }
+        /* Media section layout */
+        .media-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 1100px;
+            margin: 12px auto 24px auto;
+            padding: 0 12px;
+            box-sizing: border-box;
+        }
+        .calendar-panel, .map-panel {
+            flex: 1 1 0;
+        }
+        @media (min-width: 900px) {
+            .media-section {
+                flex-direction: row;
+                align-items: center; /* vertically center calendar and map */
+            }
+            .calendar-container iframe {
+                height: 520px;
+            }
+            .map-panel {
+                display: flex;
+                justify-content: center;
+                align-items: center; /* center map vertically */
+                padding-left: 20px;
+            }
+            /* ensure the map image scales to match calendar height */
+            .map-panel img {
+                max-height: 520px;
+                width: auto;
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -116,23 +181,40 @@
             <a class="link-btn" href="https://www.facebook.com/profile.php?id=61568563697712" target="_blank">Facebook Page</a>
             <a class="link-btn" href="https://linktr.ee/ccna53214" target="_blank">CCNA Linktree</a>
             <a class="link-btn" href="http://subscribepage.io/Q5aGyP" target="_blank">Email List Signup</a>
-            <a class="link-btn" href="https://calendar.google.com/calendar/u/0?cid=Y2NuYTUzMjE0QGdtYWlsLmNvbQ" target="_blank">Neighborhood Calendar</a>
+            <!-- Calendar embed is shown below instead of a button -->
             <a class="link-btn map-link-mobile" href="https://www.google.com/maps/d/u/0/edit?mid=1BZL2Ign6zRzC6uGHAG0oz55STCDH1dc&usp=sharing" target="_blank">Neighborhood Map</a>
 
         </div>
     </div>
-    <div class="footer">
-        <!-- Neighborhood Map Image Section -->
-        <div style="margin-top:32px; text-align:center;">
-            <div class="map-img-mobile">
-                <a href="https://www.google.com/maps/d/u/0/edit?mid=1BZL2Ign6zRzC6uGHAG0oz55STCDH1dc&usp=sharing" target="_blank">
-                    <img src="citycentermap.png" alt="Neighborhood Map" style="width:100%;max-width:400px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
-                </a>
-                <div style="color:#555;font-size:0.98em;margin-top:8px;">Click the map to view the interactive Neighborhood Map</div>
+    <!-- Media section: calendar (left) + map (right) on wide screens -->
+    <section class="media-section">
+        <div class="calendar-panel">
+            <div class="calendar-container">
+                <iframe src="https://calendar.google.com/calendar/embed?src=ccna53214%40gmail.com&ctz=America%2FChicago" style="border:0" width="100%" height="420" frameborder="0" scrolling="no"></iframe>
+                <div style="text-align:center;margin-top:12px;">
+                    <a class="calendar-add" href="https://calendar.google.com/calendar/r?cid=ccna53214%40gmail.com" target="_blank" rel="noreferrer">
+                        <svg class="calendar-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M7 11h5v5H7z" fill="currentColor" />
+                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 15H5V9h14v10z" fill="currentColor" />
+                        </svg>
+                        <span>Add calendar</span>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="footer">
-            &copy; 2025 City Center Neighborhood Association, West Allis WI
+        <div class="map-panel">
+            <div style="text-align:center;margin-top:0;">
+                <div class="map-img-mobile">
+                    <a href="https://www.google.com/maps/d/u/0/edit?mid=1BZL2Ign6zRzC6uGHAG0oz55STCDH1dc&usp=sharing" target="_blank">
+                        <img src="citycentermap.png" alt="Neighborhood Map" style="width:100%;max-width:420px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+                    </a>
+                    <div style="color:#555;font-size:0.98em;margin-top:8px;">Click the map to view the interactive Neighborhood Map</div>
+                </div>
+            </div>
         </div>
+    </section>
+    <div class="footer">
+        &copy; 2025 City Center Neighborhood Association, West Allis WI
+    </div>
 </body>
 </html>
