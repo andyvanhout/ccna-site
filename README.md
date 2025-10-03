@@ -2,11 +2,11 @@
 
 This repository contains a simple static homepage for the City Center Neighborhood Association.
 
-Goal: deploy the contents of this folder to Cloudflare Pages and serve it from `ccna53214.org`.
+Goal: deploy the contents of this folder to Cloudflare Pages and serve it from `citycenterwestallis.org`.
 
 Prerequisites
 - A GitHub account (to host the repo)
-- A Cloudflare account managing `ccna53214.org`
+- A Cloudflare account managing `citycenterwestallis.org`
 - Git installed and available in PowerShell
 
 Quick publish (recommended flow: GitHub → Cloudflare Pages)
@@ -37,15 +37,15 @@ gh repo create ccna-site --public --source=. --remote=origin --push
 - Build command: (leave blank)
 - Build output directory: `/` (root)
 
-3. DNS: Remove Linktree records and add the custom domain in Pages
-- In Cloudflare Dashboard → DNS, delete any CNAME or A records currently pointing your domain to Linktree (e.g., CNAME `@` or `www` -> `linktr.ee`).
-- In your Pages project → Custom domains → Add `ccna53214.org` (and optionally `www.ccna53214.org`). Cloudflare will auto-provision TLS and create/verify required DNS records for you since the domain uses Cloudflare.
+3. DNS: Add the custom domain in Pages
+ - In Cloudflare Dashboard → DNS, ensure there are no old CNAME or A records pointing your domain to previous services (such as Linktree). Only the records required for Cloudflare Pages should remain.
+ - In your Pages project → Custom domains → Add `citycenterwestallis.org` (and optionally `www.citycenterwestallis.org`). Cloudflare will auto-provision TLS and create/verify required DNS records for you since the domain uses Cloudflare.
 
 4. Test
-- Visit `https://ccna53214.org` after deployment and DNS/SSL provisioning completes (allow a few minutes).
+ - Visit `https://citycenterwestallis.org` after deployment and DNS/SSL provisioning completes (allow a few minutes).
 
 Troubleshooting
-- If the site still resolves to Linktree after removing CNAMEs, clear Cloudflare cache and perform a full refresh in your browser (Ctrl+F5).
+- If the site still resolves to an old service (such as Linktree) after updating DNS records, clear Cloudflare cache and perform a full refresh in your browser (Ctrl+F5).
 - If Pages asks for a DNS record for verification, copy the exact record from the Pages UI and add it in Cloudflare DNS.
 
 Next steps I can do for you
